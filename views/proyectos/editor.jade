@@ -1,0 +1,38 @@
+extends ../layout/layout
+block content
+	.full-bg-img
+		.container
+			.space-30
+			.space-30
+			.row
+				.animated.bounceInDown.white-text
+					.row(style='text-align:center')
+						h5
+							i.icon-file-text
+							|  #{archivo.nombre}
+					.row(style='text-align:center')
+						span
+							| Los cambios se van guardando cada vez que escribes algo, no te preocupes por guardar... Nosotros lo hacemos por ti!
+					.row(ng-controller='proyectoController')
+						textarea#code(name='code', rows='20', style='display: none;', value='#{archivo.contenido}')
+						input#idarchivo(type='hidden', value='#{archivo._id}')
+	link(rel='stylesheet', href='/css/docs.css')
+	link(rel='stylesheet', href='/css/codemirror.css')
+	link(rel='stylesheet', href='/css/fullscreen.css')
+	link(rel='stylesheet', href='/css/night.css')
+	script(src='/js/codemirror.js')
+	script(src='/js/xml.js')
+	script(src='/js/fullscreen.js')
+	script.
+		var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+			lineNumbers: true,
+			theme: "night",
+			extraKeys: {
+				"F11": function(cm) {
+					cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+				},
+				"Esc": function(cm) {
+					if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+				}
+			}
+		});

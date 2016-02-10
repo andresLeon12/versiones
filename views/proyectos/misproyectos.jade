@@ -1,0 +1,33 @@
+extends ../layout/layout
+block content
+	.full-bg-img
+		.container(ng-controller='inicioController')
+			.space-30
+			.space-30
+			div
+				div
+					.animated.bounceInRight.white-text
+						h4(style='text-align:center')
+							| Mis proyectos
+						hr.divider-short
+						if(proyectos)
+							if(proyectos.length == 0)
+								.row(style='text-align:center')
+									h5
+										| Aún no tienes proyectos
+									a.btn.btn-default.btn-etc.waves-effect.waves-light(href='/nuevoproyecto')
+										i.fa.fa-download.right
+										| Agrega uno ahora
+							else
+								.wow.bounceInUp(style='max-height:420px')
+									each proyecto in proyectos
+										.col-md-4.portfolio-item
+											.material-placeholder
+												.card.white
+													.card-content.black-text
+														| Nombre: #{proyecto.nombre}
+														p
+														| Descripción: #{proyecto.descripcion}
+													.card-action
+														a.red-text(href='/proyecto/#{proyecto._id}') Abrir
+										.space-30

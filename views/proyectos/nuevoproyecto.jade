@@ -1,0 +1,36 @@
+extends ../layout/layout
+block content
+	.full-bg-img
+		.container(ng-controller='proyectoController')
+			.space-30
+			.space-30
+			div
+				div
+					.animated.fadeInDown.white-text
+						h4(style='text-align:center')
+							| Registro de usuario
+						hr.divider-short
+						.row
+							.col-md-2
+							.col-md-8
+								.card.white.z-depth-3
+									.card-content.black-text
+										.col-md-2
+										#error
+										form.col-md-8#registro(action='/nuevoproyecto', method='POST')
+											.row
+												.input-field.col-md-12
+													input.validate#nombre_usuario(type='text', name='nombre', ng-model='proyecto.nombre', required)
+													label(for="nombre_usuario" data-error="Escriba correctamente su nombre" data-success="✓")
+														| Nombre del proyecto
+											.row
+												.input-field.col-md-12
+													textarea.materialize-textarea#email(type='textarea', name='descripcion', ng-model='proyecto.descripcion', required)
+													label(for="email" data-error="Correo ingresado erroneamente" data-success="✓")
+														| Descripción
+											.row
+												.col-md-6
+													a.btn.btn-link(href='/misproyectos', style='float:left')
+														| Cancelar
+												.col-md-6
+													input.btn.btn-primary(type='submit', value='Agregar', style='float:right')

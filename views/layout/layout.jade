@@ -1,0 +1,23 @@
+doctype html
+html(ng-app='versiones')
+	head
+		title= title
+		meta(http-equiv="X-UA-Compatible", content="IE=Edge")
+		meta(name="viewport" content="width=device-width, initial-scale=1")
+		meta(charset="utf-8")
+		link(rel='shortcut icon', type='image/x-icon', href='/images/logo.png')
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/font-awesome.min.css')
+		link(rel='stylesheet', href='/css/mdb.css')
+		link(rel='stylesheet', href='/css/style.css')
+		link(rel='stylesheet', href='/css/codemirror.css')
+	body!=body
+		include navbar
+		block content
+	script(src="/js/jquery.min.js")
+	script(src="/js/angular.min.js")
+	script(src="/js/bootstrap.min.js")
+	script(src="/js/mdb.js")
+	script(src="/js/app.js")
+	script(src="/js/codemirror.js")
+	script(src="/js/script.js")

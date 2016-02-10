@@ -1,0 +1,28 @@
+extends ../layout/layout
+block content
+	.full-bg-img
+		.container
+			.space-30
+			.space-30
+			.row(style='text-align:center')
+				.animated.bounceInDown.white-text
+					h4(style='text-align:center')
+						| #{proyecto.nombre}
+					hr.divider-short
+					h5
+						| #{proyecto.descripcion}
+					h5
+						| Commit #{commit}
+					hr.divider-long
+			.row
+				.col-md-12
+					.animated.fadeInDown.white-text
+						h4(style='text-align:center')
+							| Archivos
+						p
+						if(archivos.length > 0)
+							each archivo in archivos
+								.col-md-12.portfolio-item
+									.material-placeholder
+										| Nombre: #{archivo.nombre}    
+										a.red-text(href='/editar/#{archivo._id}', target='blank') Editar

@@ -1,0 +1,78 @@
+extends ../layout/layout
+block content
+	.full-bg-img
+		.container
+			.space-30
+			.space-30
+			.row(style='text-align:center')
+				.animated.bounceInDown.white-text
+					h4(style='text-align:center')
+						| #{proyecto.nombre}
+					hr.divider-short
+					h5
+						| #{proyecto.descripcion}
+					hr.divider-long
+			.row
+				.col-md-6
+					.animated.fadeInDown.white-text
+						h4(style='text-align:center')
+							| Archivos
+						button.btn.btn-link.white-text(type='button',data-toggle="modal",data-target="#nuevo_directorio") 
+							i.icon-file
+							|   Nuevo archivo
+						p
+						if(archivos.length > 0)
+							each archivo in archivos
+								.col-md-12.portfolio-item
+									.material-placeholder
+										| Nombre: #{archivo.nombre}    
+										a.red-text(href='/editar/#{archivo._id}', target='blank') Editar
+				.col-md-6
+					.animated.fadeInDown.white-text
+						h4(style='text-align:center')
+							| Commits
+						button.btn.btn-link.white-text(type='button',data-toggle="modal",data-target="#nuevo_commit") 
+							i.icon-circle-blank
+							|   Nuevo commit
+						p
+						if(commits.length > 0)
+							each commit in commits
+								if(commit.commit!='')
+									.col-md-12.portfolio-item
+										.material-placeholder
+											| Nombre: #{commit}    
+											a.red-text(href='/commits/#{proyecto._id}/#{commit}', target='blank') Ver
+	.modal.fade#nuevo_directorio(role='dialog')
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type='button',data-dismiss="modal") &times;
+					h4
+						| Nuevo archivo
+				.modal-body
+					form(action='/nuevoarchivo', method='POST')
+						.row
+							.input-field.col-md-12
+								input.validate#email(type='text', name='nombre', ng-model='usuario.correo', required)
+								label(for="email", data-success="✓")
+									| Nombre
+								input(type='hidden', name='proyecto', value='#{proyecto._id}')
+						.row		
+							input.btn.btn-primary(type='submit', value='Crear', style='float:right')
+	.modal.fade#nuevo_commit(role='dialog')
+		.modal-dialog
+			.modal-content
+				.modal-header
+					button.close(type='button',data-dismiss="modal") &times;
+					h4
+						| Nuevo commit
+				.modal-body
+					form(action='/nuevocommit', method='POST')
+						.row
+							.input-field.col-md-12
+								input.validate#email(type='text', name='nombre', ng-model='usuario.correo', required)
+								label(for="email", data-success="✓")
+									| Nombre
+								input(type='hidden', name='proyecto', value='#{proyecto._id}')
+						.row		
+							input.btn.btn-primary(type='submit', value='Crear', style='float:right')
